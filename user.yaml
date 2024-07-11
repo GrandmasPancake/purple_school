@@ -1,0 +1,31 @@
+user:
+  isadmin: true
+  name: Vasya
+  age: 33
+  position: №5
+  skills:
+    - name: VScode
+      level: 4
+      description: |
+        Очень многострочное
+        описание
+    - name: trainspotting
+      level: 5
+      description: |
+         (  )
+         _||__ ____ ____ _____
+         (o)___))___))___))___)
+         /U/0 0  0 0  0 0  0 0 
+  address:
+    country: Russia
+    city: Kolotushkin
+    street: Puskin
+    house: 12
+    apartment: 2
+  pets:
+    - name: Tiger
+      breed: lion
+      can_it_meow: yes
+    - name: Ivan Fedorovich
+      breed: collie
+      can_it_meow: off
