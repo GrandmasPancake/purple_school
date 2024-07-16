@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: rmq-cluster-ip
+spec:
+  type: ClusterIP
+  selector:
+    components: rmq
+  ports:
+  - port: 5672
+    protocol: TCP
