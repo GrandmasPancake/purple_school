@@ -23,9 +23,15 @@ spec:
         - containerPort: 5672
         env:
           - name: SEED_USERNAME
-            value: demo
+            valueFrom:
+              secretKeyRef:
+                name: conv-secrets
+                key: SEED_USERNAME
           - name: SEED_USER_PASSWORD
-            value: demo
+            valueFrom:
+              secretKeyRef:
+                name: conv-secrets
+                key: SEED_USER_PASSWORD
         volumeMounts:
         - name: rmq-db
           mountPath: /var/lib/rabbitmq
