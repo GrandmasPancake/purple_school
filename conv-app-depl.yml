@@ -18,6 +18,12 @@ spec:
         imagePullPolicy: Always
         ports:
           - containerPort: 80
+        env:
+          - name: VITE_DOMAIN
+            valueFrom:
+              configMapKeyRef:
+                name: conv-app-configmap
+                key: VITE_DOMAIN     
         resources:
           limits:
             memory: "512Mi"

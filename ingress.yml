@@ -17,3 +17,10 @@ spec:
             name: conv-app-cluster-ip
             port: 
               number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: conv-api-cluster-ip
+            port:
+              number: 3000
