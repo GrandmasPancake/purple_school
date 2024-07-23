@@ -51,3 +51,5 @@ envs:
   amqp_pw: guest
   amqp_hostname: rmq-cluster-ip
   amqp_queue: converter
+  domain: conv.test
+
