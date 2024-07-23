@@ -10,3 +10,44 @@ app:
   relicas: 1
   env_name: VITE_DOMAIN
   domain: conv.test
+
+api:
+  name: conv-api
+  port: 3000
+  image: antonlarichev/conv-api
+  version: "1.0"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  components: conv-api-backend
+
+service:
+  name: conv-service
+  port: 80
+  image: antonlarichev/conv-service
+  version: "1.0"
+  limits:  
+   memory: "500Mi"
+   cpu: "300m"
+
+rmq:
+  name: rmq
+  port: 5672
+  image: rabbitmq
+  components: rmq
+  version: 3.13.4
+  limits:
+    memory: "256Mi"
+    cpu: "500m"
+
+secrets:
+  name: conv
+  
+envs:
+  seed_uname: guest
+  seed_pw: guest
+  amqp_exchange: conv-test
+  amqp_user: guest
+  amqp_pw: guest
+  amqp_hostname: rmq-cluster-ip
+  amqp_queue: converter

@@ -21,6 +21,6 @@ spec:
         path: "/api"
         backend:
           service:
-            name: conv-api-cluster-ip
+            name: {{ .Values.api.name }}-cluster-ip
             port:
-              number: 3000
+              number: {{ .Values.api.port }}

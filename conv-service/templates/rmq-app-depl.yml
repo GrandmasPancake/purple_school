@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.rmq.name }}-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      components: {{ .Values.rmq.components }}
+  template:
+    metadata:
+      labels:
+        components: {{ .Values.rmq.components }}
+    spec:
+      containers:
+      - name: {{ .Values.rmq.name }}
+        image: "{{ .Values.rmq.image }}:{{ .Values.rmq.version }}"
+        resources:
+          limits: {{ .Values.rmq.limits | toYaml | nindent 12 }}
+        ports:
+        - containerPort: {{ .Values.rmq.port }}
+        env:
+          - name: SEED_USERNAME
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.name }}-secrets
+                key: SEED_USERNAME
+          - name: SEED_USER_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: {{ .Values.secrets.name }}-secrets
+                key: SEED_USER_PASSWORD
+        volumeMounts:
+        - name: {{ .Values.rmq.name }}-db
+          mountPath: /var/lib/rabbitmq
+      volumes:
+      - name: {{ .Values.rmq.name }}-db
+        persistentVolumeClaim:
+          claimName: {{ .Values.rmq.name }}-pvc
