@@ -1,0 +1,12 @@
+app:
+  name: conv-app
+  version: 1.2
+  port: 80
+  image: antonlarichev/conv-app
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  components: conv-app-front
+  relicas: 1
+  env_name: VITE_DOMAIN
+  domain: conv.test

@@ -23,7 +23,7 @@ spec:
             valueFrom:
               configMapKeyRef:
                 name: conv-app-configmap
-                key: VITE_DOMAIN     
+                key: VITE_DOMAIN
         resources:
           limits:
             memory: "512Mi"
