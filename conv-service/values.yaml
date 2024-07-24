@@ -35,7 +35,7 @@ rmq:
   port: 5672
   image: rabbitmq
   components: rabbitmpq-backend
-  version: 3.13
+  version: 3
   limits:
     memory: "256Mi"
     cpu: "500m"
@@ -49,7 +49,7 @@ envs:
   amqp_exchange: conv-test
   amqp_user: guest
   amqp_pw: guest
-  amqp_hostname: rmq-cluster-ip
+  amqp_hostname: rabbit-app-cluster-ip
   amqp_queue: converter
   domain: conv.test
 
