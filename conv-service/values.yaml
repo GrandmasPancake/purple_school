@@ -31,11 +31,11 @@ service:
    cpu: "300m"
 
 rmq:
-  name: rmq
+  name: rabbit-app
   port: 5672
   image: rabbitmq
-  components: rmq
-  version: 3.13.4
+  components: rabbitmpq-backend
+  version: 3.13
   limits:
     memory: "256Mi"
     cpu: "500m"
