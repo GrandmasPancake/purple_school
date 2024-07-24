@@ -22,14 +22,10 @@ spec:
         env:
           - name: SEED_USERNAME
             valueFrom:
-              secretKeyRef:
-                name: {{ .Values.secrets.name }}-secrets
-                key: SEED_USERNAME
-          - name: SEED_USER_PASSWORD
-            valueFrom:
-              secretKeyRef:
-                name: {{ .Values.secrets.name }}-secrets
-                key: SEED_USER_PASSWORD
+          {{- range .Values.amqp_envs }}
+          {{- $data := dict "name" $.Values.amqp_envs "env" . }}
+          {{- include "env.template" $data | indent 10 }}
+          {{- end }}
         volumeMounts:
         - name: {{ .Values.rmq.name }}-db
           mountPath: /var/lib/rabbitmq
