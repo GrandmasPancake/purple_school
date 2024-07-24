@@ -2,6 +2,6 @@
 - name: {{ .env }}
   valueFrom:
     secretKeyRef:
-      name: conv-secrets
+      name: "{{ .name }}-secret"
       key: {{ .env }}
 {{- end }}
