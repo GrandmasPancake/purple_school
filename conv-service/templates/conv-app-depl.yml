@@ -24,6 +24,15 @@ spec:
               configMapKeyRef:
                 name: {{ .Values.app.name }}-configmap
                 key: {{ .Values.app.env_name }}
+        livenessProbe:
+          exec:
+            command:
+              - curl
+              - --fail
+              - http://localhost:{{ .Values.app.port }}
+          initialDelaySeconds: 45
+          periodSeconds: 5
+          failureThreshold: 3
         resources:
           limits: {{ .Values.app.limits  | toYaml | nindent 12 }}
 

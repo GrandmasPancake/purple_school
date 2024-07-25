@@ -10,3 +10,52 @@ app:
   relicas: 1
   env_name: VITE_DOMAIN
   domain: conv.test
+
+api:
+  name: conv-api
+  port: 3000
+  image: antonlarichev/conv-api
+  version: "1.0"
+  limits:
+    memory: "512Mi"
+    cpu: "500m"
+  components: conv-api-backend
+  envs:
+    - AMQP_EXCHANGE
+    - AMQP_USER
+    - AMQP_PASSWORD
+    - AMQP_HOSTNAME
+
+service:
+  name: conv-service
+  port: 80
+  image: antonlarichev/conv-service
+  version: "1.0"
+  limits:  
+   memory: "500Mi"
+   cpu: "300m"
+  envs:
+    - AMQP_EXCHANGE
+    - AMQP_USER
+    - AMQP_PASSWORD
+    - AMQP_HOSTNAME
+    - AMQP_QUEUE
+
+rmq:
+  name: rabbit-app
+  port: 5672
+  image: rabbitmq
+  components: rabbitmq-backend
+  version: 3.12.14
+  limits:
+    memory: "256Mi"
+    cpu: "500m"
+  envs:
+    - SEED_USERNAME
+    - SEED_USER_PASSWORD
+
+secrets:
+  name: conv
+  
+
+

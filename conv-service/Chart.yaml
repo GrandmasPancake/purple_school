@@ -1,6 +1,6 @@
 apiVersion: v2
 name: conv-service
-description: A Helm chart for Kubernetes
+description: Image converter service
 
 # A chart can be either an 'application' or a 'library' chart.
 #
