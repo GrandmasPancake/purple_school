@@ -46,7 +46,7 @@ rmq:
   port: 5672
   image: rabbitmq
   components: rabbitmq-backend
-  version: 3
+  version: 3.12.14
   limits:
     memory: "256Mi"
     cpu: "500m"
