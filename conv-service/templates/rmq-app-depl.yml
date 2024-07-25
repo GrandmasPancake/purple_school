@@ -15,15 +15,14 @@ spec:
       containers:
       - name: {{ .Values.rmq.name }}
         image: "{{ .Values.rmq.image }}:{{ .Values.rmq.version }}"
+        imagePullPolicy: Always
         resources:
           limits: {{ .Values.rmq.limits | toYaml | nindent 12 }}
         ports:
         - containerPort: {{ .Values.rmq.port }}
         env:
-          - name: SEED_USERNAME
-            valueFrom:
-          {{- range .Values.amqp_envs }}
-          {{- $data := dict "name" $.Values.amqp_envs "env" . }}
+          {{- range .Values.rmq.envs }}
+          {{- $data := dict "name" $.Values.rmq.name "env" . }}
           {{- include "env.template" $data | indent 10 }}
           {{- end }}
         volumeMounts:

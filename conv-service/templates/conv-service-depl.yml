@@ -21,7 +21,7 @@ spec:
         resources:
           limits: {{ .Values.service.limits | toYaml | nindent 14 }}
         env:
-          {{- range .Values.amqp_envs }}
-          {{- $data := dict "name" $.Values.seed_envs  "env" . }}
+          {{- range .Values.service.envs}}
+          {{- $data := dict "name" $.Values.service.name  "env" . }}
           {{- include "env.template" $data | indent 10 }}
           {{- end }} 

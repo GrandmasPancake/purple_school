@@ -21,8 +21,8 @@ spec:
         resources: 
           limits: {{ .Values.api.limits | toYaml | nindent 12 }}
         env:
-          {{- range .Values.seed_envs }}
-          {{- $data := dict "name" $.Values.seed_envs  "env" . }}
+          {{- range .Values.api.envs }}
+          {{- $data := dict "name" $.Values.api.name  "env" . }}
           {{- include "env.template" $data | indent 10 }}
           {{- end }}
         volumeMounts:
